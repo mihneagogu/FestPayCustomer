@@ -5,10 +5,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.mikez.festpaycustomer.Info;
+import com.example.mikez.festpaycustomer.InfoHistory;
+import com.example.mikez.festpaycustomer.InfoProducts;
 import com.example.mikez.festpaycustomer.R;
 
 import java.util.List;
@@ -19,9 +19,9 @@ import java.util.List;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder>{
     private Context context;
-    private List<Info> data;
+    private List<InfoHistory> data;
 
-    public HistoryAdapter(Context context, List<Info> data) {
+    public HistoryAdapter(Context context, List<InfoHistory> data) {
         this.context = context;
         this.data = data;
     }
@@ -30,15 +30,17 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
     @Override
     public HistoryAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.custom_row, parent, false);
+        View view = inflater.inflate(R.layout.custom_row_history, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Info currentData = data.get(position);
-        holder.text.setText(currentData.getItemText());
-        holder.icon.setImageDrawable(context.getResources().getDrawable(R.drawable.icon_1));
+        InfoHistory currentData = data.get(position);
+        holder.name.setText(currentData.getName());
+        holder.price.setText(currentData.getPrice());
+        holder.quantity.setText(currentData.getQuantity());
+        holder.finalPrice.setText(currentData.getFinalPrice());
 
     }
 
@@ -49,13 +51,17 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView text;
-        ImageView icon;
+        TextView name;
+        TextView price;
+        TextView quantity;
+        TextView finalPrice;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            text = (TextView) itemView.findViewById(R.id.history_recycler_text);
-            icon = (ImageView) itemView.findViewById(R.id.history_recycler_icon);
+            name = (TextView) itemView.findViewById(R.id.history_product_name);
+            price = (TextView) itemView.findViewById(R.id.history_product_price);
+            quantity = (TextView) itemView.findViewById(R.id.history_product_quantity);
+            finalPrice = (TextView) itemView.findViewById(R.id.history_product_final_price);
         }
 
 

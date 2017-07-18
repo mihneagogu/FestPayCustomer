@@ -12,7 +12,7 @@ import com.example.mikez.festpaycustomer.adapters.HistoryAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HistoryActivity extends AppCompatActivity implements View.OnClickListener{
+public class HistoryActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView imageBack;
 
@@ -24,12 +24,12 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
         imageBack = (ImageView) findViewById(R.id.history_button_back);
         imageBack.setOnClickListener(this);
 
-        List<Info> data = new ArrayList<>();
-        data.add(new Info(1, "This is the first row"));
-        data.add(new Info(2, "This is the second row"));
-        data.add(new Info(3, "This is the third row"));
-        data.add(new Info(4, "This is the fourth row"));
-        data.add(new Info(5, "This is the fifth row"));
+        List<InfoHistory> data = new ArrayList<>();
+        data.add(new InfoHistory(1, "Coca-cola", "coca", "2 baneti", "ba"));
+        data.add(new InfoHistory(2, "Coca-cola", "coddca", "3 baneti", "ba"));
+        data.add(new InfoHistory(3, "ddd", " sdd", "sdsd", "ba"));
+        data.add(new InfoHistory(4, "ddd", " sdsd", "sdssd", "ba"));
+        data.add(new InfoHistory(5, "ddd", " sdd", "sdsd", "ba"));
 
         HistoryAdapter adapter = new HistoryAdapter(this, data);
         RecyclerView recycleList = (RecyclerView) findViewById(R.id.history_recycler_view);

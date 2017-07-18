@@ -3,9 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.mikez.festpaycustomer.ProductsActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -122,55 +123,12 @@
             android:background="@color/colorGray"
             android:orientation="vertical">
 
-            <LinearLayout
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/products_recycler_view"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="5dp">
+                android:layout_height="match_parent">
 
-                <TextView
-                    android:layout_width="120dp"
-                    android:layout_height="30dp"
-                    android:gravity="center"
-                    android:text="Produs" />
-
-                <TextView
-                    android:layout_width="120dp"
-                    android:layout_height="30dp"
-                    android:gravity="center"
-                    android:text="Magazin" />
-
-                <TextView
-                    android:layout_width="120dp"
-                    android:layout_height="30dp"
-                    android:gravity="center"
-                    android:text="Pret" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="5dp">
-
-                <TextView
-                    android:layout_width="120dp"
-                    android:layout_height="30dp"
-                    android:gravity="center"
-                    android:text="Produs" />
-
-                <TextView
-                    android:layout_width="120dp"
-                    android:layout_height="30dp"
-                    android:gravity="center"
-                    android:text="Magazin" />
-
-                <TextView
-                    android:layout_width="120dp"
-                    android:layout_height="30dp"
-                    android:gravity="center"
-                    android:text="Pret" />
-
-            </LinearLayout>
+            </android.support.v7.widget.RecyclerView>
         </LinearLayout>
     </LinearLayout>
 
