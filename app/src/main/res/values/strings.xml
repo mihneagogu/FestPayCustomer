@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">FestPay</string>
+    <string name="firstpage_username">Username</string>
+    <string name="firstpage_password">Password</string>
+    <string name="firstpage_login_button">Log In</string>
+    <string name="firstpage_forgot_password">Forgot your password?</string>
+    <string name="firstpage_register_button">Register</string>
+    <string name="firstpage_projectname">FestPay</string>
+    <string name="register_confirmpass">Confirm Password</string>
+    <string name="register_name">Name</string>
+    <string name="register_email">E-mail</string>
+    <string name="main_pay">Pay</string>
+    <string name="main_history">History</string>
+    <string name="main_logout">Log Out</string>
+    <string name="main_products">Products</string>
+</resources>
+
