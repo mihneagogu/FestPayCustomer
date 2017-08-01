@@ -10,23 +10,28 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mikez.festpaycustomer.localdatabase.DatabaseManager;
+
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private EditText editUsername;
+    private EditText editEmail;
     private EditText editPassword;
+    private DatabaseManager database;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        editUsername = (EditText) findViewById(R.id.edit_login_username);
+        editEmail = (EditText) findViewById(R.id.edit_login_email);
         editPassword = (EditText) findViewById(R.id.edit_login_password);
         TextView textForgotPass = (TextView) findViewById(R.id.text_login_forgotpass);
         Button buttonLogin = (Button) findViewById(R.id.button_login_login);
         Button buttonRegister = (Button) findViewById(R.id.button_login_register);
         ImageView imageFacebook = (ImageView) findViewById(R.id.login_image_facebook);
         ImageView imageGoogle = (ImageView) findViewById(R.id.login_image_google);
+
+        database = new DatabaseManager(this);
 
         buttonLogin.setOnClickListener(this);
         buttonRegister.setOnClickListener(this);
@@ -39,7 +44,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_login_login:
-                loginPass();
+                if (database.loginUser(editEmail.getText().toString(), editPassword.getText().toString())) {
+                    Toast.makeText(this, "Login successful.", Toast.LENGTH_SHORT).show();
+                    Intent intentLogin = new Intent(this, MainActivity.class);
+                    startActivity(intentLogin);
+                } else {
+                    Toast.makeText(this, "Login unsuccessful", Toast.LENGTH_LONG).show();
+                }
                 break;
             case R.id.button_login_register:
                 Intent intentRegister = new Intent(this, RegisterActivity.class);
@@ -57,13 +68,4 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    private void loginPass() {
-        if (editUsername.getText().toString().isEmpty() || editPassword.getText().toString().isEmpty()) {
-            Toast.makeText(this, "Please log in", Toast.LENGTH_LONG).show();
-        } else {
-            Intent intentLogin = new Intent(this, MainActivity.class);
-            startActivity(intentLogin);
-            finish();
-        }
-    }
 }

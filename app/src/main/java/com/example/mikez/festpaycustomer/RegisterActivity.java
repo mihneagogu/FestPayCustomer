@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.mikez.festpaycustomer.localdatabase.DatabaseManager;
+
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText editEmail;
@@ -21,6 +23,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private String name;
     private String pass;
     private String confirmpass;
+    private DatabaseManager database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         editConfirmPass = (EditText) findViewById(R.id.register_edit_confirmpass);
         Button buttonRegister = (Button) findViewById(R.id.register_button_register);
         ImageView imageBack = (ImageView) findViewById(R.id.register_button_back);
+
+        database = new DatabaseManager(this);
 
         editEmail.setOnClickListener(this);
         editName.setOnClickListener(this);
@@ -48,7 +53,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(intentBack);
                 break;
             case R.id.register_button_register:
-                Toast.makeText(this, "Successfully registered", Toast.LENGTH_LONG).show();
+                if (database.registerUser(editEmail.getText().toString(), editName.getText().toString(),
+                        editPass.getText().toString(), editConfirmPass.getText().toString())) {
+                    Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+                    Toast.makeText(this, "Registration failed", Toast.LENGTH_SHORT).show();
+                }
                 break;
 
         }
