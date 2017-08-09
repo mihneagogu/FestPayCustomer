@@ -17,6 +17,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText editEmail;
     private EditText editPassword;
     private DatabaseManager database;
+    private int loginCase;
 
 
     @Override
@@ -44,12 +45,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_login_login:
-                if (database.loginUser(editEmail.getText().toString(), editPassword.getText().toString())) {
+                loginCase = database.loginUser(editEmail.getText().toString(), editPassword.getText().toString());
+                if (loginCase == 0) {
                     Toast.makeText(this, "Login successful.", Toast.LENGTH_SHORT).show();
                     Intent intentLogin = new Intent(this, MainActivity.class);
                     startActivity(intentLogin);
+                    finish();
+                } else if (loginCase == 1) {
+                    Toast.makeText(this, "E-mail or password is empty", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(this, "Login unsuccessful", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "E-mail and password do not match", Toast.LENGTH_LONG).show();
                 }
                 break;
             case R.id.button_login_register:

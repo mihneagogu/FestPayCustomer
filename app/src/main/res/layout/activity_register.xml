@@ -43,6 +43,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:gravity="center"
+            android:inputType="text"
+            android:imeActionLabel="Next"
+            android:maxLines="1"
             android:hint="@string/register_email"
             android:textColor="@color/colorBlue"
             android:textColorHint="@color/colorBlue" />
@@ -61,6 +64,9 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:hint="@string/register_name"
+            android:inputType="text"
+            android:imeActionLabel="Next"
+            android:maxLines="1"
             android:textColor="@color/colorBlue"
             android:textColorHint="@color/colorBlue" />
 
@@ -79,6 +85,8 @@
             android:layout_margin="5dp"
             android:gravity="center"
             android:hint="@string/firstpage_password"
+            android:imeActionLabel="Next"
+            android:maxLines="1"
             android:inputType="textPassword"
             android:textColor="@color/colorBlue"
             android:textColorHint="@color/colorBlue" />
@@ -98,6 +106,8 @@
             android:layout_margin="5dp"
             android:gravity="center"
             android:hint="@string/firstpage_password"
+            android:maxLines="1"
+            android:imeOptions="actionDone"
             android:inputType="textPassword"
             android:textColor="@color/colorBlue"
             android:textColorHint="@color/colorBlue" />

@@ -24,6 +24,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private String pass;
     private String confirmpass;
     private DatabaseManager database;
+    private int registerCase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,13 +54,30 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(intentBack);
                 break;
             case R.id.register_button_register:
-                if (database.registerUser(editEmail.getText().toString(), editName.getText().toString(),
-                        editPass.getText().toString(), editConfirmPass.getText().toString())) {
-                    Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show();
-                    finish();
-                } else {
-                    Toast.makeText(this, "Registration failed", Toast.LENGTH_SHORT).show();
+                registerCase = database.registerUser(editEmail.getText().toString(), editName.getText().toString(),
+                        editPass.getText().toString(), editConfirmPass.getText().toString());
+                switch (registerCase) {
+                    case 0:
+                        Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show();
+                        finish();
+                        break;
+                    case 1:
+                        Toast.makeText(this, "Please fill in all the fields", Toast.LENGTH_LONG).show();
+                        break;
+                    case 2:
+                        Toast.makeText(this, "Passwords do not match", Toast.LENGTH_LONG).show();
+                        break;
+                    case 3:
+                        Toast.makeText(this, "E-mail does not contain '@'", Toast.LENGTH_LONG).show();
+                        break;
+                    case 4:
+                        Toast.makeText(this, "The password's length is too short", Toast.LENGTH_LONG).show();
+                        break;
+                    case 5:
+                        Toast.makeText(this, "The e-mail already exists", Toast.LENGTH_LONG).show();
+                        break;
                 }
+
                 break;
 
         }

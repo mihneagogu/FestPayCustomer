@@ -43,6 +43,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:inputType="text"
+            android:imeActionLabel="Next"
+            android:maxLines="1"
             android:gravity="center"
             android:hint="@string/register_email" />
 
@@ -59,8 +62,10 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:gravity="center"
-            android:hint="@string/firstpage_password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:imeOptions="actionDone"
+            android:maxLines="1"
+            android:hint="@string/firstpage_password" />
 
         <Button
             android:id="@+id/button_login_login"
