@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -40,7 +39,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 finish();
                 break;
             case R.id.main_button_pay:
-                Toast.makeText(this, "Soon", Toast.LENGTH_SHORT).show();
+                Intent intentPay = new Intent(this, PayActivity.class);
+                startActivity(intentPay);
                 break;
             case R.id.main_button_history:
                 Intent intentHistory = new Intent(this, HistoryActivity.class);
