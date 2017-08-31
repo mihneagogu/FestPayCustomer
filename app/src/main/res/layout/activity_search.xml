@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:padding="15dp"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context="com.example.mikez.festpaycustomer.SearchActivity">
+
+    <EditText
+        android:id="@+id/search_edit_search"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:hint="Search"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/search_button_execute_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Execute search"
+        android:textAllCaps="false"/>
+    <TextView
+        android:id="@+id/search_text_results"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorWhite"
+        android:text="RESULTS"
+        android:gravity="center"/>
+
+</LinearLayout>

@@ -18,12 +18,16 @@ import static com.example.mikez.festpaycustomer.localdatabase.DatabaseContract.C
 
     private static final int DATABSE_VERSION = 1;
 
-    private static final String DATABASE_QUERY = "CREATE TABLE " + DatabaseContract.UserContractEntry.TABLE_NAME + " (" +
+    private static final String DATABASE_USER_QUERY = "CREATE TABLE " + DatabaseContract.UserContractEntry.TABLE_NAME + " (" +
             DatabaseContract.UserContractEntry.COLUMN_ID + " NUMBER," +
             DatabaseContract.UserContractEntry.COLUMN_EMAIL + " TEXT," +
             DatabaseContract.UserContractEntry.COLUMN_NAME + " TEXT," +
             DatabaseContract.UserContractEntry.COLUMN_PASSWORD + " TEXT);";
 
+    private static final String DATABASE_PRODUCT_QUERY = "CREATE TABLE " + DatabaseContract.ProductsContractEntry.TABLE_NAME + " (" +
+            DatabaseContract.ProductsContractEntry.COLUMN_NAME + " TEXT," +
+            DatabaseContract.ProductsContractEntry.COLUMN_VENDOR + " TEXT," +
+            DatabaseContract.ProductsContractEntry.COLUMN_PRICE + " NUMBER);";
     DatabaseHelper(Context context) {
 
         super(context, DATABASE_NAME, null, DATABSE_VERSION);
@@ -33,7 +37,8 @@ import static com.example.mikez.festpaycustomer.localdatabase.DatabaseContract.C
     @Override
     public void onCreate(SQLiteDatabase database) {
 
-        database.execSQL(DATABASE_QUERY);
+        database.execSQL(DATABASE_USER_QUERY);
+        database.execSQL(DATABASE_PRODUCT_QUERY);
     }
 
     @Override
@@ -49,6 +54,14 @@ import static com.example.mikez.festpaycustomer.localdatabase.DatabaseContract.C
         getWritableDatabase().insert(DatabaseContract.UserContractEntry.TABLE_NAME, null, contentValues);
     }
 
+    void addProduct (String name, String vendor, int price){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DatabaseContract.ProductsContractEntry.COLUMN_NAME, name);
+        contentValues.put(DatabaseContract.ProductsContractEntry.COLUMN_VENDOR, vendor);
+        contentValues.put(DatabaseContract.ProductsContractEntry.COLUMN_PRICE, price);
+        getWritableDatabase().insert(DatabaseContract.ProductsContractEntry.TABLE_NAME, null, contentValues);
+    }
+
     Cursor getUsers(){
         String[] list = {DatabaseContract.UserContractEntry.COLUMN_ID,
                 DatabaseContract.UserContractEntry.COLUMN_EMAIL,
@@ -56,6 +69,14 @@ import static com.example.mikez.festpaycustomer.localdatabase.DatabaseContract.C
                 DatabaseContract.UserContractEntry.COLUMN_PASSWORD};
         return getReadableDatabase().query(DatabaseContract.UserContractEntry.TABLE_NAME, list, null, null, null, null, null);
 
+    }
+
+    Cursor getProducts(){
+        String[] list = {DatabaseContract.ProductsContractEntry.COLUMN_NAME,
+        DatabaseContract.ProductsContractEntry.COLUMN_VENDOR,
+        DatabaseContract.ProductsContractEntry.COLUMN_PRICE};
+
+        return getReadableDatabase().query(DatabaseContract.ProductsContractEntry.TABLE_NAME, list, null, null, null, null, null);
     }
 
     private int getGenerateId(){
@@ -68,5 +89,15 @@ import static com.example.mikez.festpaycustomer.localdatabase.DatabaseContract.C
         }
         cursor.close();
         return ++id;
+    }
+
+    Cursor getProductForSearch(String productName) {
+        String[] results = {DatabaseContract.ProductsContractEntry.COLUMN_NAME,
+        DatabaseContract.ProductsContractEntry.COLUMN_VENDOR,
+        DatabaseContract.ProductsContractEntry.COLUMN_PRICE};
+
+        String selection = DatabaseContract.ProductsContractEntry.COLUMN_NAME + " LIKE ?";
+        String[] selectionArgs = {"%" + productName + "%"};
+        return getReadableDatabase().query(DatabaseContract.ProductsContractEntry.TABLE_NAME, results, selection, selectionArgs, null, null, null);
     }
 }

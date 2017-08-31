@@ -59,6 +59,7 @@ public class DatabaseManager {
         return 2;
     }
 
+
     public DatabaseHelper getDatabase() {
         return database;
     }

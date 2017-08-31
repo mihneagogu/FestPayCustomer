@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.mikez.festpaycustomer.localdatabase.ProductManager;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private int creditnum = 9999;
@@ -28,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonHistory.setOnClickListener(this);
         buttonProducts.setOnClickListener(this);
         buttonLogOut.setOnClickListener(this);
+
+
 
     }
 
