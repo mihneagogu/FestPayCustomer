@@ -17,7 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <activity android:name=".LoginActivity">
+        <activity
+            android:name=".LoginActivity"
+            android:screenOrientation="sensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,9 +29,10 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".HistoryActivity" />
         <activity android:name=".ProductsActivity" />
-        <activity android:name=".RegisterActivity" />
+        <activity
+            android:name=".RegisterActivity"
+            android:screenOrientation="sensor" />
         <activity android:name=".PayActivity" />
-        <activity android:name=".SearchActivity"></activity>
     </application>
 
 </manifest>

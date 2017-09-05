@@ -39,9 +39,11 @@ public class ProductsAdapter extends RecyclerView.Adapter<com.example.mikez.fest
     @Override
     public void onBindViewHolder(com.example.mikez.festpaycustomer.adapters.ProductsAdapter.ViewHolder holder, int position) {
         InfoProducts currentData = data2.get(position);
+        int priceInt = currentData.getPrice();
+        String priceString = String.valueOf(priceInt);
         holder.name.setText(currentData.getName());
         holder.vendor.setText(currentData.getVendor());
-        holder.price.setText(currentData.getPrice());
+        holder.price.setText(priceString);
 
     }
 

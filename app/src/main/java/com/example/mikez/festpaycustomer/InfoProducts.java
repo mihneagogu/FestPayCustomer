@@ -6,14 +6,12 @@ package com.example.mikez.festpaycustomer;
 
 public class InfoProducts {
 
-    private int productId;
     private String name;
     private String vendor;
-    private String price;
+    private int price;
 
-    public InfoProducts(int productId, String name, String vendor, String price) {
+    public InfoProducts(String name, String vendor, int price) {
 
-        this.productId = productId;
         this.name = name;
         this.vendor = vendor;
         this.price = price;
@@ -28,7 +26,7 @@ public class InfoProducts {
         return vendor;
     }
 
-    public String getPrice(){
+    public int getPrice(){
         return price;
     }
 

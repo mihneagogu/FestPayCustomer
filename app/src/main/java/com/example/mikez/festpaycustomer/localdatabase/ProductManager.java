@@ -3,6 +3,8 @@ package com.example.mikez.festpaycustomer.localdatabase;
 import android.content.Context;
 import android.database.Cursor;
 
+import com.example.mikez.festpaycustomer.InfoProducts;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,19 +19,33 @@ public class ProductManager {
 
 
     private DatabaseHelper database;
-
+    private List<String> optionsSearch = new ArrayList<>();
     public ProductManager(Context context) {
         setDatabase(new DatabaseHelper(context));
     }
 
 
-    public void registerProduct(String name, String vendor, int price) {
-        for (int i = 0; i < 9; i++) {
-            name += String.valueOf(i);
-            vendor += String.valueOf(i);
+    public List<InfoProducts> registerProduct(String name, String vendor, int price) {
+        List<InfoProducts> products = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            if (i==0) {
+                name += String.valueOf(i);
+                vendor += String.valueOf(i);
+            } else {
+                name = name.substring(0,name.length()-1) + String.valueOf(i);
+                vendor = vendor.substring(0, vendor.length()-1) + String.valueOf(i);
+            }
             price += i * 100;
             getDatabase().addProduct(name, vendor, price);
+            products.add(new InfoProducts(name, vendor, price));
+            optionsSearch.add(name);
         }
+        return products;
+
+    }
+
+    public List<String> getSearchOptions(){
+        return optionsSearch;
     }
 
     public List<Product> searchProduct(String productName) {

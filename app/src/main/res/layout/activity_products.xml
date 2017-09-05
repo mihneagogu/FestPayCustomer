@@ -43,9 +43,13 @@
             android:layout_height="60dp"
             android:orientation="horizontal">
 
-            <EditText
+            <AutoCompleteTextView
+                android:id="@+id/products_autocomplete_text_view_search"
                 android:layout_width="300dp"
                 android:layout_height="match_parent"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:maxLines="1"
                 android:gravity="center"
                 android:hint="Search" />
 
