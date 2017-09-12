@@ -55,15 +55,15 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="20dp"
-            android:text="@string/register_name"
+            android:text="Confirm E-mail"
             android:textSize="20dp" />
 
         <EditText
-            android:id="@+id/register_edit_name"
+            android:id="@+id/register_edit_confirm_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:hint="@string/register_name"
+            android:hint="Confirm E-mail"
             android:inputType="text"
             android:imeActionLabel="Next"
             android:maxLines="1"

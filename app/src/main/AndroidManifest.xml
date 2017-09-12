@@ -4,6 +4,7 @@
     package="com.example.mikez.festpaycustomer">
 
     <uses-permission android:name="andriod.permission.NFC" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-feature
         android:name="android.hardware.nfc"

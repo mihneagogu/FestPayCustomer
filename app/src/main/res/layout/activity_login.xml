@@ -88,7 +88,13 @@
             android:textAllCaps="false"
 
             />
-
+        <CheckBox
+            android:id="@+id/login_check_box_remember_me"
+            android:layout_marginLeft="80dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Remember me"
+            android:layout_gravity="center"/>
         <TextView
             android:id="@+id/text_login_forgotpass"
             android:layout_width="210dp"
@@ -107,7 +113,7 @@
             <ImageView
                 android:id="@+id/login_image_facebook"
                 android:layout_width="100dp"
-                android:layout_height="120dp"
+                android:layout_height="80dp"
                 android:layout_marginBottom="20dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="50dp"
@@ -117,7 +123,7 @@
             <ImageView
                 android:id="@+id/login_image_google"
                 android:layout_width="100dp"
-                android:layout_height="120dp"
+                android:layout_height="80dp"
                 android:layout_marginLeft="70dp"
                 android:layout_marginTop="20dp"
                 android:src="@drawable/google_icon" />

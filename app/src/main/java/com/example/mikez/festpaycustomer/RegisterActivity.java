@@ -1,6 +1,8 @@
 package com.example.mikez.festpaycustomer;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.net.Network;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,11 +12,17 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.mikez.festpaycustomer.localdatabase.DatabaseManager;
+import com.example.mikez.festpaycustomer.network.NetworkManager;
+import com.example.mikez.festpaycustomer.network.ProductModel;
+import com.example.mikez.festpaycustomer.network.ProductResponse;
+import com.example.mikez.festpaycustomer.network.UserResponse;
 
-public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
+import java.util.List;
+
+public class RegisterActivity extends AppCompatActivity implements View.OnClickListener, UserResponse {
 
     private EditText editEmail;
-    private EditText editName;
+    private EditText editConfirmEmail;
     private EditText editPass;
     private EditText editConfirmPass;
     private Button buttonRegister;
@@ -25,24 +33,22 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private String confirmpass;
     private DatabaseManager database;
     private int registerCase;
+    private NetworkManager network;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         editEmail = (EditText) findViewById(R.id.register_edit_email);
-        editName = (EditText) findViewById(R.id.register_edit_name);
+        editConfirmEmail = (EditText) findViewById(R.id.register_edit_confirm_email);
         editPass = (EditText) findViewById(R.id.register_edit_pass);
         editConfirmPass = (EditText) findViewById(R.id.register_edit_confirmpass);
         Button buttonRegister = (Button) findViewById(R.id.register_button_register);
         ImageView imageBack = (ImageView) findViewById(R.id.register_button_back);
 
+        network = new NetworkManager(this, NetworkManager.KEY_USER);
         database = new DatabaseManager(this);
 
-        editEmail.setOnClickListener(this);
-        editName.setOnClickListener(this);
-        editPass.setOnClickListener(this);
-        editConfirmPass.setOnClickListener(this);
         imageBack.setOnClickListener(this);
         buttonRegister.setOnClickListener(this);
     }
@@ -52,34 +58,41 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             case R.id.register_button_back:
                 Intent intentBack = new Intent(this, LoginActivity.class);
                 startActivity(intentBack);
+                finish();
                 break;
             case R.id.register_button_register:
-                registerCase = database.registerUser(editEmail.getText().toString(), editName.getText().toString(),
-                        editPass.getText().toString(), editConfirmPass.getText().toString());
-                switch (registerCase) {
-                    case 0:
-                        Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show();
-                        finish();
-                        break;
-                    case 1:
-                        Toast.makeText(this, "Please fill in all the fields", Toast.LENGTH_LONG).show();
-                        break;
-                    case 2:
-                        Toast.makeText(this, "Passwords do not match", Toast.LENGTH_LONG).show();
-                        break;
-                    case 3:
-                        Toast.makeText(this, "E-mail does not contain '@'", Toast.LENGTH_LONG).show();
-                        break;
-                    case 4:
-                        Toast.makeText(this, "The password's length is too short", Toast.LENGTH_LONG).show();
-                        break;
-                    case 5:
-                        Toast.makeText(this, "The e-mail already exists", Toast.LENGTH_LONG).show();
-                        break;
-                }
-
+                network.register(editEmail.getText().toString(), editConfirmEmail.getText().toString(), editPass.getText().toString(), editConfirmPass.getText().toString());
                 break;
 
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intentBack = new Intent(this, LoginActivity.class);
+        startActivity(intentBack);
+        finish();
+
+    }
+
+    @Override
+    public void logIn() {
+
+    }
+
+    @Override
+    public void passwordForgotten() {
+
+    }
+
+    @Override
+    public void register() {
+        Intent intentMain = new Intent(this, MainActivity.class);
+        startActivity(intentMain);
+        finish();
+
+        Toast.makeText(this, "Registration successful.", Toast.LENGTH_SHORT).show();
+    }
+
 }
