@@ -25,11 +25,6 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
         imageBack.setOnClickListener(this);
 
         List<InfoHistory> data = new ArrayList<>();
-        data.add(new InfoHistory(1, "Coca-cola", "coca", "2 baneti", "ba"));
-        data.add(new InfoHistory(2, "Coca-cola", "coddca", "3 baneti", "ba"));
-        data.add(new InfoHistory(3, "ddd", " sdd", "sdsd", "ba"));
-        data.add(new InfoHistory(4, "ddd", " sdsd", "sdssd", "ba"));
-        data.add(new InfoHistory(5, "ddd", " sdd", "sdsd", "ba"));
 
         HistoryAdapter adapter = new HistoryAdapter(this, data);
         RecyclerView recycleList = (RecyclerView) findViewById(R.id.history_recycler_view);

@@ -13,8 +13,25 @@ public class ProductModel {
     private double price;
     private String description;
     private String category;
-    private List<String> shops;
+    private String shop;
     private String imageURL;
+
+    public ProductModel(int id, String name, String imageURL, double price, String description, String category, String shop) {
+        setId(id);
+        setName(name);
+        setImageURL(imageURL);
+        setPrice(price);
+        setDescription(description);
+        setCategory(category);
+        setShop(shop);
+    }
+
+    public ProductModel(String name, String shop, double price){
+        setName(name);
+        setShop(shop);
+        setPrice(price);
+    }
+
 
     public int getId() {
         return id;
@@ -28,7 +45,7 @@ public class ProductModel {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(String name){
         this.name = name;
     }
 
@@ -56,12 +73,12 @@ public class ProductModel {
         this.category = category;
     }
 
-    public List<String> getShops() {
-        return shops;
+    public void setShop(String shop) {
+        this.shop = shop;
     }
 
-    public void setShops(List<String> shops) {
-        this.shops = shops;
+    public String getShop() {
+        return shop;
     }
 
     public String getImageURL() {

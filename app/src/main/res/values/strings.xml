@@ -13,5 +13,6 @@
     <string name="main_history">History</string>
     <string name="main_logout">Log Out</string>
     <string name="main_products">Products</string>
+    <string name="split">_,_</string>
 </resources>
 

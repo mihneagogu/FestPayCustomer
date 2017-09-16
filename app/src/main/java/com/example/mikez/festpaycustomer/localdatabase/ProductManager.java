@@ -3,13 +3,15 @@ package com.example.mikez.festpaycustomer.localdatabase;
 import android.content.Context;
 import android.database.Cursor;
 
-import com.example.mikez.festpaycustomer.InfoProducts;
+import com.example.mikez.festpaycustomer.network.ProductModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
+import static com.example.mikez.festpaycustomer.localdatabase.DatabaseContract.CURSOR_PRODUCT_NAME;
 import static com.example.mikez.festpaycustomer.localdatabase.DatabaseContract.CURSOR_PRODUCT_PRICE;
+import static com.example.mikez.festpaycustomer.localdatabase.DatabaseContract.CURSOR_PRODUCT_VENDOR;
 
 /**
  * Created by mikez on 8/31/2017.
@@ -17,32 +19,68 @@ import static com.example.mikez.festpaycustomer.localdatabase.DatabaseContract.C
 
 public class ProductManager {
 
-
+    private Context context;
     private DatabaseHelper database;
+    private List<ProductModel> products;
     private List<String> optionsSearch = new ArrayList<>();
     public ProductManager(Context context) {
+        products = new ArrayList<>();
+        this.context = context;
         setDatabase(new DatabaseHelper(context));
     }
 
 
-    public List<InfoProducts> registerProduct(String name, String vendor, int price) {
-        List<InfoProducts> products = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            if (i==0) {
-                name += String.valueOf(i);
-                vendor += String.valueOf(i);
-            } else {
-                name = name.substring(0,name.length()-1) + String.valueOf(i);
-                vendor = vendor.substring(0, vendor.length()-1) + String.valueOf(i);
-            }
-            price += i * 100;
-            getDatabase().addProduct(name, vendor, price);
-            products.add(new InfoProducts(name, vendor, price));
-            optionsSearch.add(name);
+
+    public void registerProduct(List<ProductModel> products) {
+        for (ProductModel x: products){
+            database.addProduct(x.getName(), x.getShop(), x.getPrice());
         }
-        return products;
 
     }
+
+    public List<ProductModel> getProducts(){
+        List<ProductModel> result = new ArrayList<>();
+        Cursor cursor = database.getProducts();
+        if (cursor.moveToFirst()){
+            do {
+                result.add(new ProductModel(cursor.getString(CURSOR_PRODUCT_NAME), cursor.getString(CURSOR_PRODUCT_VENDOR), Double.parseDouble(cursor.getString(CURSOR_PRODUCT_PRICE))));
+            } while (cursor.moveToNext());
+        }
+        return result;
+    }
+
+//    public void saveImage(String name) {
+//        ContextWrapper cw = new ContextWrapper(getContext());
+//        File directory = cw.getDir("images", Context.MODE_PRIVATE);
+//        File myPath = new File(directory, name + ".jpg");
+//        FileOutputStream fos = null;
+//        try {
+//            fos = new FileOutputStream(myPath);
+//            getImage().compress(Bitmap.CompressFormat.JPEG, 100, fos);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//            try {
+//                assert fos != null;
+//                fos.close();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
+//
+//    public Bitmap getImage(String name) {
+//        Bitmap bitmap = null;
+//        ContextWrapper cw = new ContextWrapper(getContext());
+//        File directory = cw.getDir("images", Context.MODE_PRIVATE);
+//        try {
+//            File f = new File(directory, name + ".jpg");
+//            bitmap = BitmapFactory.decodeStream(new FileInputStream(f));
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//        return bitmap;
+//    }
 
     public List<String> getSearchOptions(){
         return optionsSearch;
@@ -69,6 +107,10 @@ public class ProductManager {
 
     public DatabaseHelper getDatabase() {
         return database;
+    }
+
+    public Context getContext(){
+        return context;
     }
 }
 

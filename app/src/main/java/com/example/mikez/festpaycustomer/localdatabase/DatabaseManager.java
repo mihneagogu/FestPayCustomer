@@ -15,49 +15,7 @@ public class DatabaseManager {
         setDatabase(new DatabaseHelper(context));
     }
 
-    public int registerUser(String email, String name, String password, String passwordConfirm) {
-        if (email.isEmpty() || name.isEmpty() || password.isEmpty() || passwordConfirm.isEmpty()) {
-            return 1;
-        }
-        if (!password.equals(passwordConfirm)) {
-            return 2;
-        }
-        if (!email.contains("@")){
-            return 3;
-        }
-        if (password.length() <= 4){
-            return 4;
-        }
-        Cursor cursor = getDatabase().getUsers();
-        if (cursor.moveToFirst()) {
-            do {
-                if (email.equals(cursor.getString(DatabaseContract.CURSOR_EMAIL))) {
-                    cursor.close();
-                    return 5;
-                }
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        getDatabase().addUser(email, name, password);
-        return 0;
-    }
 
-    public int loginUser(String email, String password) {
-        if (email.isEmpty() || password.isEmpty()) {
-            return 1;
-        }
-        Cursor cursor = getDatabase().getUsers();
-        if (cursor.moveToFirst()) {
-            do {
-                if (email.equals(cursor.getString(DatabaseContract.CURSOR_EMAIL)) && password.equals(cursor.getString(DatabaseContract.CURSOR_PASSWORD))) {
-                    cursor.close();
-                    return 0;
-                }
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        return 2;
-    }
 
 
     public DatabaseHelper getDatabase() {

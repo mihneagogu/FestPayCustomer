@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.mikez.festpaycustomer.InfoHistory;
-import com.example.mikez.festpaycustomer.InfoProducts;
 import com.example.mikez.festpaycustomer.R;
 
 import java.util.List;

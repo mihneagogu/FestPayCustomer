@@ -194,13 +194,7 @@ public class NetworkManager {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                try {
-                    List<ProductModel> productModels = new ObjectMapper().reader().readValue(response);
-
-                    getProductResponse().loadProducts(productModels);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                getProductResponse().loadProducts(new ParserJSON(getContext()).convertJSONtoObject(response));
             }
         }, new Response.ErrorListener() {
             @Override

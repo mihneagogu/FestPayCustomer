@@ -12,13 +12,13 @@ public class InfoHistory {
     private String quantity;
     private String finalPrice;
 
-    public InfoHistory(int productId, String name, String price, String quantity, String finalPrice) {
-        this.productId = productId;
+    public InfoHistory(String name, String price, String quantity, String finalPrice) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
         this.finalPrice = finalPrice;
     }
+
 
     public int getProductId() {
         return productId;
