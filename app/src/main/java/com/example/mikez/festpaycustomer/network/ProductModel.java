@@ -26,10 +26,11 @@ public class ProductModel {
         setShop(shop);
     }
 
-    public ProductModel(String name, String shop, double price){
+    public ProductModel(String name, String shop, double price, int id){
         setName(name);
         setShop(shop);
         setPrice(price);
+        setId(id);
     }
 
 

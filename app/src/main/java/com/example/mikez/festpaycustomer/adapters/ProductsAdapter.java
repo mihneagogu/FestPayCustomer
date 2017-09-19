@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.mikez.festpaycustomer.R;
+import com.example.mikez.festpaycustomer.localdatabase.Product;
 import com.example.mikez.festpaycustomer.network.ProductModel;
 
 import java.text.DecimalFormat;
@@ -20,9 +21,9 @@ import java.util.List;
 
 public class ProductsAdapter extends RecyclerView.Adapter<com.example.mikez.festpaycustomer.adapters.ProductsAdapter.ViewHolder> {
     private Context context;
-    private List<ProductModel> data2;
+    private List<Product> data2;
 
-    public ProductsAdapter(Context context, List<ProductModel> data) {
+    public ProductsAdapter(Context context, List<Product> data) {
         this.context = context;
         this.data2 = data;
     }
@@ -37,9 +38,9 @@ public class ProductsAdapter extends RecyclerView.Adapter<com.example.mikez.fest
 
     @Override
     public void onBindViewHolder(com.example.mikez.festpaycustomer.adapters.ProductsAdapter.ViewHolder holder, int position) {
-        ProductModel currentData = data2.get(position);
+        Product currentData = data2.get(position);
         holder.name.setText(currentData.getName());
-        holder.vendor.setText(currentData.getShop());
+        holder.vendor.setText(currentData.getVendor());
         holder.price.setText(new DecimalFormat("#.#").format(currentData.getPrice()));
 
     }

@@ -8,9 +8,9 @@ public class Product {
 
     private String name;
     private String vendor;
-    private int price;
+    private double price;
 
-    public Product(String name, String vendor, int price){
+    public Product(String name, String vendor, double price){
         this.name = name;
         this.vendor = vendor;
         this.price = price;
@@ -22,7 +22,7 @@ public class Product {
     public String getVendor(){
         return vendor;
     }
-    public int getPrice(){
+    public double getPrice(){
         return price;
     }
 }

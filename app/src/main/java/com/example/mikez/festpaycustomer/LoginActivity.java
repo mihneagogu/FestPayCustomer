@@ -28,10 +28,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText editEmail;
     public CheckBox checkRememberMe;
     private EditText editPassword;
-    private DatabaseManager database;
-    private int loginCase;
     private NetworkManager network;
-    private String nullString = "";
     private Preference preference;
     private static final String PREF_NAME = "prefs";
     private static final String KEY_REMEMBER = "remember";
@@ -56,7 +53,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         checkRememberMe = (CheckBox) findViewById(R.id.login_check_box_remember_me);
 
         network = new NetworkManager(this, NetworkManager.KEY_USER);
-        database = new DatabaseManager(this);
 
         if (preference.getPreferenceBoolean(KEY_REMEMBER)) {
             network.logIn(preference.getPreferenceString(KEY_EMAIL), preference.getPreferenceString(KEY_PASSWORD));

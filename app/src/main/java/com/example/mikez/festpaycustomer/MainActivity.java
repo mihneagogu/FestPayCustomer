@@ -12,21 +12,27 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mikez.festpaycustomer.localdatabase.HistoryManager;
 import com.example.mikez.festpaycustomer.localdatabase.Product;
 import com.example.mikez.festpaycustomer.localdatabase.ProductManager;
+import com.example.mikez.festpaycustomer.network.HistoryModel;
 import com.example.mikez.festpaycustomer.network.NetworkManager;
 import com.example.mikez.festpaycustomer.network.ProductModel;
 import com.example.mikez.festpaycustomer.network.ProductResponse;
+import com.example.mikez.festpaycustomer.util.CreditPreference;
 import com.example.mikez.festpaycustomer.util.Preference;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, ProductResponse, NfcAdapter.CreateNdefMessageCallback {
 
-    private int creditnum = 9999;
+    private double creditnum = 9999;
     private Preference preference;
+    private CreditPreference creditPreference;
     private ProductManager database;
     private NetworkManager network;
+    private static final String KEY_CREDITS = "credits";
 
 
     //pay history products logout
@@ -38,21 +44,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         TextView creditNumberText = (TextView) findViewById(R.id.main_text_creditnumber);
-        creditNumberText.setText("You have " + String.valueOf(creditnum) + " credits");
         Button buttonPay = (Button) findViewById(R.id.main_button_pay);
         Button buttonHistory = (Button) findViewById(R.id.main_button_history);
         Button buttonProducts = (Button) findViewById(R.id.main_button_products);
         Button buttonLogOut = (Button) findViewById(R.id.main_button_logout);
-        preference = new Preference(this);
 
+        preference = new Preference(this);
+        creditPreference = new CreditPreference(this);
         network = new NetworkManager(this, NetworkManager.KEY_PRODUCT);
         database = new ProductManager(this);
-
         if (database.getProducts().size() > 0) {
 //            delete and repopulate
+            System.out.println("SIZEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE \n\n\n\n\n\n ----------------- \n asdasdasd" + database.getProducts().size());
+            database.deleteAll();
+            network.getProducts();
         } else {
             network.getProducts();
         }
+
+        creditPreference.setPreference(KEY_CREDITS, "3");
+        creditnum -= Double.parseDouble(creditPreference.getStringPreference(KEY_CREDITS));
+        creditNumberText.setText(String.valueOf(creditnum));
 
         buttonPay.setOnClickListener(this);
         buttonHistory.setOnClickListener(this);

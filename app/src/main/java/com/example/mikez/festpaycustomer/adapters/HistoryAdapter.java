@@ -7,8 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.mikez.festpaycustomer.InfoHistory;
 import com.example.mikez.festpaycustomer.R;
+import com.example.mikez.festpaycustomer.network.HistoryModel;
 
 import java.util.List;
 
@@ -18,9 +18,9 @@ import java.util.List;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder>{
     private Context context;
-    private List<InfoHistory> data;
+    private List<HistoryModel> data;
 
-    public HistoryAdapter(Context context, List<InfoHistory> data) {
+    public HistoryAdapter(Context context, List<HistoryModel> data) {
         this.context = context;
         this.data = data;
     }
@@ -35,11 +35,11 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        InfoHistory currentData = data.get(position);
+        HistoryModel currentData = data.get(position);
         holder.name.setText(currentData.getName());
-        holder.price.setText(currentData.getPrice());
-        holder.quantity.setText(currentData.getQuantity());
-        holder.finalPrice.setText(currentData.getFinalPrice());
+        holder.price.setText(String.valueOf(currentData.getPrice()));
+        holder.quantity.setText(String.valueOf(currentData.getQuantity()));
+        holder.finalPrice.setText(String.valueOf(currentData.getFinalPrice()));
 
     }
 

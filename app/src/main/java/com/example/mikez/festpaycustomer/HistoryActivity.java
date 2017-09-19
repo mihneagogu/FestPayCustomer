@@ -8,12 +8,15 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.mikez.festpaycustomer.adapters.HistoryAdapter;
+import com.example.mikez.festpaycustomer.localdatabase.HistoryManager;
+import com.example.mikez.festpaycustomer.network.HistoryModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HistoryActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private HistoryManager database;
     private ImageView imageBack;
 
     @Override
@@ -24,9 +27,11 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
         imageBack = (ImageView) findViewById(R.id.history_button_back);
         imageBack.setOnClickListener(this);
 
-        List<InfoHistory> data = new ArrayList<>();
+        database = new HistoryManager(this);
 
-        HistoryAdapter adapter = new HistoryAdapter(this, data);
+
+
+        HistoryAdapter adapter = new HistoryAdapter(this, database.getHistory());
         RecyclerView recycleList = (RecyclerView) findViewById(R.id.history_recycler_view);
         recycleList.setLayoutManager(new LinearLayoutManager(this));
         recycleList.setAdapter(adapter);

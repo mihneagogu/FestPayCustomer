@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+import static com.example.mikez.festpaycustomer.localdatabase.DatabaseContract.CURSOR_PRODUCT_ID;
 import static com.example.mikez.festpaycustomer.localdatabase.DatabaseContract.CURSOR_PRODUCT_NAME;
 import static com.example.mikez.festpaycustomer.localdatabase.DatabaseContract.CURSOR_PRODUCT_PRICE;
 import static com.example.mikez.festpaycustomer.localdatabase.DatabaseContract.CURSOR_PRODUCT_VENDOR;
@@ -22,6 +23,7 @@ public class ProductManager {
     private Context context;
     private DatabaseHelper database;
     private List<ProductModel> products;
+    private int id;
     private List<String> optionsSearch = new ArrayList<>();
     public ProductManager(Context context) {
         products = new ArrayList<>();
@@ -32,18 +34,27 @@ public class ProductManager {
 
 
     public void registerProduct(List<ProductModel> products) {
+        int id = 0;
         for (ProductModel x: products){
-            database.addProduct(x.getName(), x.getShop(), x.getPrice());
+            ++id;
+            database.addProduct(x.getName(), x.getShop(), x.getPrice(), x.getId());
         }
-
+        setMaxId(id);
     }
 
+    public void setMaxId(int id){
+        this.id = id;
+    }
+
+    public int getMaxId(){
+        return id;
+    }
     public List<ProductModel> getProducts(){
         List<ProductModel> result = new ArrayList<>();
         Cursor cursor = database.getProducts();
         if (cursor.moveToFirst()){
             do {
-                result.add(new ProductModel(cursor.getString(CURSOR_PRODUCT_NAME), cursor.getString(CURSOR_PRODUCT_VENDOR), Double.parseDouble(cursor.getString(CURSOR_PRODUCT_PRICE))));
+                result.add(new ProductModel(cursor.getString(CURSOR_PRODUCT_NAME), cursor.getString(CURSOR_PRODUCT_VENDOR), Double.parseDouble(cursor.getString(CURSOR_PRODUCT_PRICE)), cursor.getInt(CURSOR_PRODUCT_ID)));
             } while (cursor.moveToNext());
         }
         return result;
@@ -98,6 +109,9 @@ public class ProductManager {
         return products;
     }
 
+    public void deleteAll(){
+        getDatabase().deleteDatabase();
+    }
 
     public void setDatabase(DatabaseHelper database) {
 

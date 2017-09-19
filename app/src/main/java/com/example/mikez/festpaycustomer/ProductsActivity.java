@@ -48,8 +48,13 @@ public class ProductsActivity extends AppCompatActivity implements View.OnClickL
         ArrayAdapter<String> autoCompleteAdapter = new ArrayAdapter<String>(this, android.R.layout.select_dialog_item, searchOptions);
         autoCompleteTextSearch.setThreshold(3);
         autoCompleteTextSearch.setAdapter(autoCompleteAdapter);
+        List<ProductModel> products = database.getProducts();
+        List<Product> productsForView = new ArrayList<>();
+        for (ProductModel x : products){
+            productsForView.add(new Product(x.getName(), x.getShop(), x.getPrice()));
+        }
 
-        ProductsAdapter adapter = new ProductsAdapter(this, database.getProducts());
+        ProductsAdapter adapter = new ProductsAdapter(this, productsForView);
         recycleList = (RecyclerView) findViewById(R.id.products_recycler_view);
         recycleList.setLayoutManager(new LinearLayoutManager(this));
         recycleList.setAdapter(adapter);
@@ -63,14 +68,14 @@ public class ProductsActivity extends AppCompatActivity implements View.OnClickL
                 break;
             case R.id.products_image_search:
                 String name, vendor;
-                int price;
+                double price;
                 List<Product> productBySearch = database.searchProduct(autoCompleteTextSearch.getText().toString());
-                List <ProductModel> productsAfterSearch = new ArrayList<>();
+                List <Product> productsAfterSearch = new ArrayList<>();
                 for (Product x: productBySearch){
                     name = x.getName();
                     vendor = x.getVendor();
                     price = x.getPrice();
-                    productsAfterSearch.add(new ProductModel(name, vendor, price));
+                    productsAfterSearch.add(new Product(name, vendor, price));
                 }
                 ProductsAdapter adapterAfterSearch = new ProductsAdapter(this, productsAfterSearch);
                 recycleList.setLayoutManager(new LinearLayoutManager(this));
