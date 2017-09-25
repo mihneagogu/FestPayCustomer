@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/colorBlue"
+        android:background="@color/colorWhite"
         android:orientation="horizontal">
 
         <ImageView
@@ -19,84 +19,66 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginLeft="2dp"
-            android:src="@drawable/button_back_white" />
+            android:src="@drawable/button_back_accent" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="75dp"
         android:orientation="vertical"
         android:padding="5dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="30dp"
-            android:text="@string/register_email"
-            android:textSize="20dp" />
 
         <EditText
             android:id="@+id/register_edit_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:gravity="center"
-            android:inputType="text"
-            android:imeActionLabel="Next"
-            android:maxLines="1"
             android:hint="@string/register_email"
-            android:textColor="@color/colorBlue"
-            android:textColorHint="@color/colorBlue" />
+            android:imeActionLabel="Next"
+            android:inputType="text"
+            android:maxLines="1"
+            android:textColor="@color/silverDark"
+            android:textColorHint="@color/silverDark"
+            android:backgroundTint="@color/silverDark"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="20dp"
-            android:text="Confirm E-mail"
-            android:textSize="20dp" />
 
         <EditText
             android:id="@+id/register_edit_confirm_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:gravity="center"
             android:hint="Confirm E-mail"
-            android:inputType="text"
             android:imeActionLabel="Next"
+            android:inputType="text"
             android:maxLines="1"
-            android:textColor="@color/colorBlue"
-            android:textColorHint="@color/colorBlue" />
+            android:textColor="@color/silverDark"
+            android:textColorHint="@color/silverDark"
+            android:backgroundTint="@color/silverDark"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="20dp"
-            android:text="@string/firstpage_password"
-            android:textSize="20dp" />
 
         <EditText
             android:id="@+id/register_edit_pass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:gravity="center"
             android:hint="@string/firstpage_password"
             android:imeActionLabel="Next"
-            android:maxLines="1"
             android:inputType="textPassword"
-            android:textColor="@color/colorBlue"
-            android:textColorHint="@color/colorBlue" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="20dp"
-            android:text="@string/register_confirmpass"
+            android:maxLines="1"
+            android:textColor="@color/silverDark"
+            android:textColorHint="@color/silverDark"
+            android:backgroundTint="@color/silverDark"
             android:textSize="20dp" />
 
         <EditText
@@ -105,22 +87,23 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:gravity="center"
-            android:hint="@string/firstpage_password"
-            android:maxLines="1"
+            android:hint="@string/register_confirmpass"
             android:imeOptions="actionDone"
             android:inputType="textPassword"
-            android:textColor="@color/colorBlue"
-            android:textColorHint="@color/colorBlue" />
+            android:maxLines="1"
+            android:textColor="@color/silverDark"
+            android:textColorHint="@color/silverDark"
+            android:backgroundTint="@color/silverDark"/>
 
         <Button
             android:id="@+id/register_button_register"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="128dp"
+            android:layout_height="32dp"
             android:layout_gravity="center"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:layout_marginTop="20dp"
-            android:background="@color/colorBlue"
+            android:background="@drawable/corners_blue"
             android:text="@string/firstpage_register_button"
             android:textAllCaps="false"
             android:textColor="@color/colorWhite"

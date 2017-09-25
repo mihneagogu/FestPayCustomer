@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/colorBlue"
+        android:background="@color/white"
         android:orientation="horizontal">
 
         <ImageView
@@ -19,7 +19,7 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginLeft="2dp"
-            android:src="@drawable/button_back_white" />
+            android:src="@drawable/button_back_accent" />
 
         <TextView
             android:layout_width="200dp"
@@ -28,7 +28,7 @@
             android:layout_marginTop="10dp"
             android:gravity="center_horizontal"
             android:text="Products"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/silverDark"
             android:textSize="35dp" />
     </LinearLayout>
 
@@ -39,82 +39,66 @@
         android:padding="10dp">
 
         <LinearLayout
+            android:layout_marginLeft="10dp"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:orientation="horizontal">
 
             <AutoCompleteTextView
                 android:id="@+id/products_autocomplete_text_view_search"
-                android:layout_width="300dp"
-                android:layout_height="match_parent"
+                android:layout_width="280dp"
+                android:layout_height="50dp"
+                android:backgroundTint="@color/silverDark"
+                android:textColorHint="@color/silverDark"
                 android:imeOptions="actionDone"
                 android:inputType="text"
                 android:maxLines="1"
-                android:gravity="center"
                 android:hint="Search" />
 
             <ImageView
+                android:layout_marginLeft="10dp"
                 android:id="@+id/products_image_search"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginBottom="4dp"
                 android:src="@drawable/icon_search" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="190dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:background="@color/colorGray"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="Shop" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+            <ImageView
+                android:layout_marginBottom="4dp"
+                android:id="@+id/products_image_filter"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
-                android:background="@color/colorGray">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="Sort by" />
-            </LinearLayout>
+                android:src="@drawable/icon_filter"/>
         </LinearLayout>
+
+        
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_marginTop="10dp"
-            android:background="@color/colorGray"
+            android:background="@color/white"
             android:orientation="horizontal">
 
             <TextView
+                android:layout_marginLeft="20dp"
                 android:layout_width="120dp"
                 android:layout_height="30dp"
                 android:gravity="center"
-                android:text="Produs" />
+                android:text="Produs"
+                android:textColor="@color/silverDark"/>
 
             <TextView
+                android:textColor="@color/silverDark"
                 android:layout_width="120dp"
                 android:layout_height="30dp"
                 android:gravity="center"
                 android:text="Magazin" />
 
             <TextView
+                android:textColor="@color/silverDark"
                 android:layout_width="120dp"
                 android:layout_height="30dp"
                 android:gravity="center"
@@ -122,10 +106,11 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginLeft="20dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="15dp"
-            android:background="@color/colorGray"
+            android:background="@color/white"
             android:orientation="vertical">
 
             <android.support.v7.widget.RecyclerView

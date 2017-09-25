@@ -1,5 +1,6 @@
 package com.example.mikez.festpaycustomer;
 
+import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,6 +20,8 @@ import java.util.List;
 
 public class ProductsActivity extends AppCompatActivity implements View.OnClickListener {
 
+
+    private ImageView imageFilter;
     private ImageView imageBack;
     private ImageView imageSearch;
     private AutoCompleteTextView autoCompleteTextSearch;
@@ -31,9 +34,11 @@ public class ProductsActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products);
 
+        imageFilter = (ImageView) findViewById(R.id.products_image_filter);
         imageSearch = (ImageView) findViewById(R.id.products_image_search);
         imageBack = (ImageView) findViewById(R.id.products_button_back);
         autoCompleteTextSearch = (AutoCompleteTextView) findViewById(R.id.products_autocomplete_text_view_search);
+        imageFilter.setOnClickListener(this);
         imageBack.setOnClickListener(this);
         imageSearch.setOnClickListener(this);
 

@@ -48,8 +48,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         TextView textForgotPass = (TextView) findViewById(R.id.text_login_forgotpass);
         Button buttonLogin = (Button) findViewById(R.id.button_login_login);
         Button buttonRegister = (Button) findViewById(R.id.button_login_register);
-        ImageView imageFacebook = (ImageView) findViewById(R.id.login_image_facebook);
-        ImageView imageGoogle = (ImageView) findViewById(R.id.login_image_google);
         checkRememberMe = (CheckBox) findViewById(R.id.login_check_box_remember_me);
 
         network = new NetworkManager(this, NetworkManager.KEY_USER);
@@ -63,8 +61,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         buttonLogin.setOnClickListener(this);
         buttonRegister.setOnClickListener(this);
         textForgotPass.setOnClickListener(this);
-        imageFacebook.setOnClickListener(this);
-        imageGoogle.setOnClickListener(this);
 
     }
 
@@ -80,12 +76,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.text_login_forgotpass:
                 Toast.makeText(this, "Soon!", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.login_image_facebook:
-                Toast.makeText(this, "Soon Facebook Log-in!", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.login_image_google:
-                Toast.makeText(this, "Soon Google Log-in!", Toast.LENGTH_SHORT).show();
                 break;
         }
     }

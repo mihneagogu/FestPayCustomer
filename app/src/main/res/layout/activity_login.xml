@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context="com.example.mikez.festpaycustomer.LoginActivity">
     <RelativeLayout
+        android:layout_marginTop="70dp"
         android:layout_width="match_parent"
         android:layout_height="64dp">
 
@@ -20,7 +21,8 @@
                 android:layout_margin="5dp"
                 android:gravity="center"
                 android:text="@string/app_name"
-                android:textColor="@color/colorBlue"
+                android:textColor="@color/black"
+                android:textStyle="bold"
                 android:textSize="36dp" />
         </LinearLayout>
     </RelativeLayout>
@@ -31,103 +33,87 @@
         android:orientation="vertical"
         android:padding="5dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="@string/register_email"
-            android:textSize="18dp" />
 
         <EditText
             android:id="@+id/edit_login_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:inputType="text"
-            android:imeActionLabel="Next"
-            android:maxLines="1"
+            android:backgroundTint="@color/silver"
             android:gravity="center"
-            android:hint="@string/register_email" />
+            android:hint="@string/register_email"
+            android:imeActionLabel="Next"
+            android:inputType="text"
+            android:maxLines="1"
+            android:textColor="@color/silverDark"
+            android:textColorHint="@color/silverDark" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="@string/firstpage_password"
-            android:textSize="18dp" />
 
         <EditText
             android:id="@+id/edit_login_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:backgroundTint="@color/silver"
             android:gravity="center"
-            android:inputType="textPassword"
+            android:hint="@string/firstpage_password"
             android:imeOptions="actionDone"
+            android:inputType="textPassword"
             android:maxLines="1"
-            android:hint="@string/firstpage_password" />
+            android:textColor="@color/silverDark"
+            android:textColorHint="@color/silverDark" />
 
         <Button
             android:id="@+id/button_login_login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="128dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginTop="30dp"
+            android:background="@drawable/corners_blue"
             android:text="@string/firstpage_login_button"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/button_login_register"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="128dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginTop="15dp"
+            android:background="@drawable/corners_blue"
             android:text="@string/firstpage_register_button"
             android:textAllCaps="false"
+            android:textColor="@color/white"
 
             />
+
         <CheckBox
             android:id="@+id/login_check_box_remember_me"
-            android:layout_marginLeft="80dp"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="85dp"
+            android:layout_marginTop="15dp"
             android:text="Remember me"
-            android:layout_gravity="center"/>
+            android:textColor="@color/silverDark" />
+
         <TextView
             android:id="@+id/text_login_forgotpass"
             android:layout_width="210dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
+            android:textStyle="bold|italic"
+            android:layout_marginLeft="12dp"
             android:text="@string/firstpage_forgot_password"
-            android:textColor="@color/colorBlue"
+            android:textColor="@color/silverDark"
             android:textSize="19dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/login_image_facebook"
-                android:layout_width="100dp"
-                android:layout_height="80dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="50dp"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/facebook_icon" />
-
-            <ImageView
-                android:id="@+id/login_image_google"
-                android:layout_width="100dp"
-                android:layout_height="80dp"
-                android:layout_marginLeft="70dp"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/google_icon" />
-        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

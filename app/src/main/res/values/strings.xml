@@ -16,5 +16,11 @@
     <string name="split">_,_</string>
     <string name="service_name">CardEmulation</string>
     <string name="card_title">FestPay Card</string>
+    <color name="silverDark">#787878</color>
+    <color name="silver">#A6A6A6</color>
+    <color name="silverLight">#DEDEDE</color>
+    <color name="black">#323232</color>
+    <color name="white">#FAFAFA</color>
+    <color name="blue">#10DDB9</color>
 </resources>
 
