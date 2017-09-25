@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ProductManager database;
     private NetworkManager network;
     private static final String KEY_CREDITS = "credits";
+    private TextView creditNumberText;
 
 
     //pay history products logout
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-        TextView creditNumberText = (TextView) findViewById(R.id.main_text_creditnumber);
+        creditNumberText = (TextView) findViewById(R.id.main_text_creditnumber);
         Button buttonPay = (Button) findViewById(R.id.main_button_pay);
         Button buttonHistory = (Button) findViewById(R.id.main_button_history);
         Button buttonProducts = (Button) findViewById(R.id.main_button_products);
@@ -71,7 +72,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonProducts.setOnClickListener(this);
         buttonLogOut.setOnClickListener(this);
 
+        NfcAdapter nfcAdapter = NfcAdapter.getDefaultAdapter(this);
+        if (nfcAdapter == null) {
+            Toast.makeText(this, "Your device does not have NFC.", Toast.LENGTH_SHORT).show();
+        } else if (nfcAdapter.isEnabled()) {
+            Toast.makeText(this, "Waiting for connectivity.", Toast.LENGTH_SHORT).show();
+            nfcAdapter.setNdefPushMessageCallback(this, this);
 
+            //code goes here
+            String message = 3 + "_;_" + "Mihnea" + "_;_" + true;
+            preference.setPreference(Preference.KEY_NFC_DATA, message);
+
+        } else {
+            //experimental
+            Toast.makeText(this, "Please turn on NFC.", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(android.provider.Settings.ACTION_NFC_SETTINGS));
+        }
 
     }
 
@@ -116,6 +132,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
+    public void updateUser(int credits) {
+        creditNumberText.setText(String.valueOf(credits));
+    }
+
+    @Override
     public NdefMessage createNdefMessage(NfcEvent event) {
         String message = 3 + "_;_" + "Mihnea" + "_;_" + true;
         NdefRecord ndefRecord = NdefRecord.createMime("text/plain", message.getBytes());
@@ -125,6 +146,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
-
+        network.updateUser();
     }
 }

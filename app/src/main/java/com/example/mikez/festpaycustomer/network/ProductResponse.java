@@ -11,4 +11,6 @@ public interface ProductResponse {
 
     void loadProducts(List<ProductModel> productModels);
 
+    void updateUser(int credits);
+
 }

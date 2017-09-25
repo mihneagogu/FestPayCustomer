@@ -12,6 +12,7 @@ public class Preference {
     public static final String KEY_REMEBER = "remember";
     public static final String KEY_EMAIL = "email";
     public static final String KEY_PASSWORD = "password";
+    public static final String KEY_NFC_DATA = "nfc_data";
     private static final String KEY_INITIALIZE = "initialize";
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;

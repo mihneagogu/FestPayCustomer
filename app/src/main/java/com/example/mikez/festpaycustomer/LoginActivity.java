@@ -55,7 +55,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         network = new NetworkManager(this, NetworkManager.KEY_USER);
 
         if (preference.getPreferenceBoolean(KEY_REMEMBER)) {
-            network.logIn(preference.getPreferenceString(KEY_EMAIL), preference.getPreferenceString(KEY_PASSWORD));
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
         }
 
 
@@ -71,13 +72,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (view.getId()) {
             case R.id.button_login_login:
                 network.logIn(editEmail.getText().toString(), editPassword.getText().toString());
-                if (checkRememberMe.isChecked()) {
-                    preference.setPreference(KEY_REMEBER, true);
-                    preference.setPreference(KEY_EMAIL, editEmail.getText().toString());
-                    preference.setPreference(KEY_PASSWORD, editPassword.getText().toString());
-                } else {
-                    preference.setPreference(KEY_REMEBER, false);
-                }
                 break;
             case R.id.button_login_register:
                 Intent intentRegister = new Intent(this, RegisterActivity.class);
@@ -98,6 +92,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void logIn() {
+        if (checkRememberMe.isChecked()) {
+            preference.setPreference(KEY_REMEBER, true);
+            preference.setPreference(KEY_EMAIL, editEmail.getText().toString());
+            preference.setPreference(KEY_PASSWORD, editPassword.getText().toString());
+        } else {
+            preference.setPreference(KEY_REMEBER, false);
+        }
         Intent intentLogin = new Intent(this, MainActivity.class);
         startActivity(intentLogin);
         finish();

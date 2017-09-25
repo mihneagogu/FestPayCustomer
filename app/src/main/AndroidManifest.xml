@@ -40,6 +40,21 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
+        <!--<service-->
+            <!--android:name=".nfc.CardService"-->
+            <!--android:exported="true"-->
+            <!--android:permission="android.permission.BIND_NFC_SERVICE">-->
+            <!--&lt;!&ndash; Intent filter indicating that we support card emulation. &ndash;&gt;-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.nfc.cardemulation.action.HOST_APDU_SERVICE" />-->
+                <!--<category android:name="android.intent.category.DEFAULT" />-->
+            <!--</intent-filter>-->
+            <!--&lt;!&ndash; Required XML configuration file, listing the AIDs that we are emulating cards-->
+                 <!--for. This defines what protocols our card emulation service supports. &ndash;&gt;-->
+            <!--<meta-data-->
+                <!--android:name="android.nfc.cardemulation.host_apdu_service"-->
+                <!--android:resource="@xml/aid_list" />-->
+        <!--</service>-->
     </application>
 
 </manifest>

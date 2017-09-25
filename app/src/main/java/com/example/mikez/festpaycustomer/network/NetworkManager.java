@@ -205,6 +205,22 @@ public class NetworkManager {
         queue.add(stringRequest);
     }
 
+    public void updateUser() {
+        String url = HOST_PRODUCT + "updateCustomer?id=" + 1;
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                getProductResponse().updateUser(Integer.parseInt(response));
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        queue.add(stringRequest);
+    }
+
 
     private Context getContext() {
         return context;

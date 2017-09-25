@@ -76,6 +76,7 @@ public class TransactionActivity extends AppCompatActivity {
         double creditsToSubstract = 0;
         List<String> transferredData = Arrays.asList(message.split("_;_"));
         double credits = Double.parseDouble(transferredData.get(0));
+        Toast.makeText(this, "The parsed credits are " + credits, Toast.LENGTH_LONG).show();
         String vendor = transferredData.get(2);
         List<HistoryModel> historyModels = new ArrayList<>();
         List<String> products = Arrays.asList(transferredData.get(1).split("__;__"));

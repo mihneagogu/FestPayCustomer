@@ -100,8 +100,6 @@ class DatabaseHelper extends SQLiteOpenHelper {
 
     public void deleteDatabase() {
         Cursor cursor = getProducts();
-
-
         if (cursor.moveToFirst()){
             do {
                 String selection = DatabaseContract.ProductsContractEntry.COLUMN_ID + " LIKE ?";
