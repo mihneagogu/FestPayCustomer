@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/white"
         android:padding="10dp">
 
 
@@ -20,7 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_marginTop="15dp"
-            android:background="@color/white"
             android:orientation="horizontal">
 
             <TextView
@@ -57,7 +55,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="15dp"
-            android:background="@color/white"
             android:orientation="vertical">
 
             <android.support.v7.widget.RecyclerView
