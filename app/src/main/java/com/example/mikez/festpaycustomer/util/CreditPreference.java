@@ -31,7 +31,7 @@ public class CreditPreference {
     }
 
     public String getStringPreference(String key){
-        return sharedPreferences.getString(key, "0");
+        return sharedPreferences.getString(key, null);
     }
 
 }

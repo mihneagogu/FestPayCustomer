@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mikez.festpaycustomer.fragments.FirstActivity;
 import com.example.mikez.festpaycustomer.localdatabase.DatabaseManager;
 import com.example.mikez.festpaycustomer.network.NetworkManager;
 import com.example.mikez.festpaycustomer.network.UserResponse;
@@ -53,7 +54,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         network = new NetworkManager(this, NetworkManager.KEY_USER);
 
         if (preference.getPreferenceBoolean(KEY_REMEMBER)) {
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, FirstActivity.class));
             finish();
         }
 
@@ -89,7 +90,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         } else {
             preference.setPreference(KEY_REMEBER, false);
         }
-        Intent intentLogin = new Intent(this, MainActivity.class);
+        Intent intentLogin = new Intent(this, FirstActivity.class);
         startActivity(intentLogin);
         finish();
     }

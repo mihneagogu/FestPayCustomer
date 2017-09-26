@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.mikez.festpaycustomer.ProductsActivity;
 
 import static com.example.mikez.festpaycustomer.localdatabase.DatabaseContract.CURSOR_PRODUCT_ID;
 
@@ -120,6 +119,15 @@ class DatabaseHelper extends SQLiteOpenHelper {
         String selection = DatabaseContract.ProductsContractEntry.COLUMN_NAME + " LIKE ?";
         String[] selectionArgs = {"%" + productName + "%"};
         return getReadableDatabase().query(DatabaseContract.ProductsContractEntry.TABLE_NAME, results, selection, selectionArgs, null, null, null);
+    }
+
+    Cursor getOrderedProducts(){
+        String[] results = {DatabaseContract.ProductsContractEntry.COLUMN_NAME,
+                DatabaseContract.ProductsContractEntry.COLUMN_VENDOR,
+                DatabaseContract.ProductsContractEntry.COLUMN_PRICE,
+                DatabaseContract.ProductsContractEntry.COLUMN_ID};
+        String orderBy = DatabaseContract.ProductsContractEntry.COLUMN_NAME + " asc";
+        return getReadableDatabase().query(DatabaseContract.ProductsContractEntry.TABLE_NAME, results, null, null, null, null, orderBy);
     }
 
 }

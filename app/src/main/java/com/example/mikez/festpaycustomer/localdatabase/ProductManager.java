@@ -21,10 +21,12 @@ import static com.example.mikez.festpaycustomer.localdatabase.DatabaseContract.C
 public class ProductManager {
 
     private Context context;
+    private int productNumbers;
     private DatabaseHelper database;
     private List<ProductModel> products;
     private int id;
     private List<String> optionsSearch = new ArrayList<>();
+
     public ProductManager(Context context) {
         products = new ArrayList<>();
         this.context = context;
@@ -32,27 +34,39 @@ public class ProductManager {
     }
 
 
-
     public void registerProduct(List<ProductModel> products) {
         int id = 0;
-        for (ProductModel x: products){
+        for (ProductModel x : products) {
             ++id;
             database.addProduct(x.getName(), x.getShop(), x.getPrice(), x.getId());
+            System.out.println("ID:  ------------- " + x.getName() + "//////");
         }
         setMaxId(id);
     }
 
-    public void setMaxId(int id){
+    public List<Product> orderAlphabetically() {
+        Cursor cursor = getDatabase().getOrderedProducts();
+        List<Product> products = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            do {
+                products.add(new Product(cursor.getString(CURSOR_PRODUCT_NAME), cursor.getString(CURSOR_PRODUCT_VENDOR), cursor.getInt(CURSOR_PRODUCT_ID)));
+            } while (cursor.moveToNext());
+        }
+        return products;
+    }
+
+    public void setMaxId(int id) {
         this.id = id;
     }
 
-    public int getMaxId(){
+    public int getMaxId() {
         return id;
     }
-    public List<ProductModel> getProducts(){
+
+    public List<ProductModel> getProducts() {
         List<ProductModel> result = new ArrayList<>();
         Cursor cursor = database.getProducts();
-        if (cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             do {
                 result.add(new ProductModel(cursor.getString(CURSOR_PRODUCT_NAME), cursor.getString(CURSOR_PRODUCT_VENDOR), Double.parseDouble(cursor.getString(CURSOR_PRODUCT_PRICE)), cursor.getInt(CURSOR_PRODUCT_ID)));
             } while (cursor.moveToNext());
@@ -93,7 +107,7 @@ public class ProductManager {
 //        return bitmap;
 //    }
 
-    public List<String> getSearchOptions(){
+    public List<String> getSearchOptions() {
         return optionsSearch;
     }
 
@@ -106,10 +120,12 @@ public class ProductManager {
             } while (cursor.moveToNext());
         }
         cursor.close();
+        productNumbers = products.size();
         return products;
+
     }
 
-    public void deleteAll(){
+    public void deleteAll() {
         getDatabase().deleteDatabase();
     }
 
@@ -123,7 +139,7 @@ public class ProductManager {
         return database;
     }
 
-    public Context getContext(){
+    public Context getContext() {
         return context;
     }
 }

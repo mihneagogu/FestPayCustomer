@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.mikez.festpaycustomer.fragments.FirstActivity;
 import com.example.mikez.festpaycustomer.localdatabase.DatabaseManager;
 import com.example.mikez.festpaycustomer.network.NetworkManager;
 import com.example.mikez.festpaycustomer.network.ProductModel;
@@ -88,7 +89,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void register() {
-        Intent intentMain = new Intent(this, MainActivity.class);
+        Intent intentMain = new Intent(this, FirstActivity.class);
         startActivity(intentMain);
         finish();
 
