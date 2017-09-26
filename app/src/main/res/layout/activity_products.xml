@@ -27,7 +27,7 @@
             android:layout_marginLeft="40dp"
             android:layout_marginTop="10dp"
             android:gravity="center_horizontal"
-            android:text="Products"
+            android:text=""
             android:textColor="@color/silverDark"
             android:textSize="35dp" />
     </LinearLayout>
